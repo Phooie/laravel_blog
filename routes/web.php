@@ -13,25 +13,33 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Route::get('/menu', function () {
- return 'List of food';
-});
-Route::get('/menu/detail', function () {
- return 'Details of each food item';
-});
+// Route::get('/menu', function () {
+//  return 'List of food';
+// });
+// Route::get('/menu/detail', function () {
+//  return 'Details of each food item';
+// });
 
-Route::get('/menu/detail/{id}', function ( $id ) {
- return "Detail of food item - $id";
-});
+// Route::get('/menu/detail/{id}', function ( $id ) {
+//  return "Detail of food item - $id";
+// });
 
-Route::get('/menu/more', function() {
- return redirect('/menu/detail');
-});
+// Route::get('/menu/more', function() {
+//  return redirect('/menu/detail');
+// });
 
-Route::get('/menu/detail', function () {
- return 'Detail of each food item';
-})->name('menu.detail');
+// Route::get('/menu/detail', function () {
+//  return 'Detail of each food item';
+// })->name('menu.detail');
+
+use App\Http\Controllers\ArticleController;
+
+Route::get('/food/index', [ArticleController::class, 'index']);//view dynamic blade
+Route::get('/food/booking', [ArticleController::class, 'booking']);//view static blade
+Route::get('/food', [ArticleController::class, 'index1']);
+Route::get('/food/detail/{id}', [ArticleController::class, 'detail']);
+Route::get('/food/test', [ArticleController::class, 'test']);
