@@ -8,7 +8,10 @@
 	 <h1>Menu List</h1>
 	 <ul>
 		 <?php foreach($articles as $article): ?>
-		    <li><?php echo $article['item'] ?></li>
+			<li><?php echo $article['id'] ?></li>
+		    <li><?php echo $article['name'] ?></li>
+			<li><?php echo $article['category'] ?></li>
+
 		 <?php endforeach ?>
 	 </ul>
 </body>
