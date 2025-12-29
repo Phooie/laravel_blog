@@ -39,6 +39,10 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\LikeController;
+
+
 
 
 
@@ -49,3 +53,8 @@ Route::get('/food/detail/{id}', [ArticleController::class, 'detail']);
 Route::get('/food/test', [ArticleController::class, 'test']);
 Route::get('/test-relation', [UserController::class, 'index']);
 Route::get('/profile', [ProfileController::class, 'index']);
+Route::get('/post-list', [UserController::class, 'postList']);
+Route::get('/post-user', [PostController::class, 'postedUser']);
+Route::get('/user/likes', [LikeController::class, 'showLikedPosts']);
+Route::get('/post/likers', [LikeController::class, 'showPostLikers']);
+Route::get('/user/{id}/latest-comment', [UserController::class, 'showLatestComment']);

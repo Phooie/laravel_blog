@@ -44,7 +44,29 @@ class User extends Authenticatable
     ];
 
     public function profile()
-{
-    return $this->hasOne(Profile::class);
-}
+    {
+        return $this->hasOne(Profile::class);
+    }
+
+    public function posts() 
+    { 
+	    return $this->hasMany(Post::class); 
+    }
+
+    public function likedPosts()
+    {
+        return $this->belongsToMany(Post::class, 'post_user_likes')->withTimestamps();//connect with Post, post_user_likes is medium
+    }
+
+    public function latestCommentThroughPost() 
+    {
+        return $this->hasOneThrough(
+            Comment::class,  // Final model (C)
+            Post::class,     // Intermediate model (B)
+            'user_id',       // FK on posts table  posts.user_id
+            'post_id',       // FK on comments table  comments.post_id
+            'id',            // PK on users table
+            'id'             // PK on posts table
+        )->latest(); // get the latest comment, changed to 'latest'
+    }
 }
