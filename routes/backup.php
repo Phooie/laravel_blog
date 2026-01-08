@@ -1,10 +1,7 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use Illuminate\Support\Facades\Route;use App\Http\Controllers\ArticleController;
-use App\Http\Controllers\UserController;
-use App\Http\Controllers\PostController;
-use App\Http\Controllers\LikeController;
+use Illuminate\Support\Facades\Route;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -16,19 +13,34 @@ use App\Http\Controllers\LikeController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+// Route::get('/', function () {
+//     return view('welcome');
+// });
 
-Route::get('/dashboard', function () {
-    return view('dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+// Route::get('/menu', function () {
+//  return 'List of food';
+// });
+// Route::get('/menu/detail', function () {
+//  return 'Details of each food item';
+// });
 
-Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-    Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-});
+// Route::get('/menu/detail/{id}', function ( $id ) {
+//  return "Detail of food item - $id";
+// });
+
+// Route::get('/menu/more', function() {
+//  return redirect('/menu/detail');
+// });
+
+// Route::get('/menu/detail', function () {
+//  return 'Detail of each food item';
+// })->name('menu.detail');
+
+use App\Http\Controllers\ArticleController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\LikeController;
 
 Route::get('/food/index', [ArticleController::class, 'index']);//view dynamic blade
 Route::get('/food/booking', [ArticleController::class, 'booking']);//view static blade
@@ -43,8 +55,3 @@ Route::get('/user/likes', [LikeController::class, 'showLikedPosts']);
 Route::get('/post/likers', [LikeController::class, 'showPostLikers']);
 Route::get('/user/{id}/latest-comment', [UserController::class, 'showLatestComment']);
 Route::get('/user/{id}/comments', [UserController::class, 'showUserComments']);
-
-
-require __DIR__.'/auth.php';
-
-//SAVE TO BACKUP BEFORE BREEZE

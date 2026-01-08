@@ -69,4 +69,16 @@ class User extends Authenticatable
             'id'             // PK on posts table
         )->latest(); // get the latest comment, changed to 'latest'
     }
+
+    public function commentsThroughPosts() 
+    {
+        return $this->hasManyThrough(
+            Comment::class,  // Final model (C)
+            Post::class,     // Intermediate model (B)
+            'user_id',       // FK on posts table  posts.user_id
+            'post_id',       // FK on comments table  comments.post_id
+            'id',            // PK on users table
+            'id'             // PK on posts table
+        )->latest(); // get the latest comment, changed to 'latest'
+    }
 }
