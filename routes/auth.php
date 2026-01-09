@@ -64,5 +64,10 @@ Route::get('/guest', function () {
 
 Route::get('/auth_user', function () {
     return 'Auth User Page - Only Auth User can access';
-})->middleware('auth');//can only view after login, if not, redirect to login
+})->middleware('check.email');//can only view after login, if not, redirect to login
+
+
+Route::get('/confidential', function () {
+    return 'Welcome to Timed Page - Non-admin users can only access this page during working hours (8 AM to 5 PM)';
+})->middleware('check.time');//change timezone in config/app.php to check if it works
 

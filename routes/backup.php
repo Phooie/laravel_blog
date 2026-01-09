@@ -55,3 +55,14 @@ Route::get('/user/likes', [LikeController::class, 'showLikedPosts']);
 Route::get('/post/likers', [LikeController::class, 'showPostLikers']);
 Route::get('/user/{id}/latest-comment', [UserController::class, 'showLatestComment']);
 Route::get('/user/{id}/comments', [UserController::class, 'showUserComments']);
+
+
+
+// <!-- <x-dropdown-link :href="route('profile.edit')">
+//                             {{ __('Profile') }}
+//                         </x-dropdown-link> -->
+
+
+// <!-- <x-responsive-nav-link :href="route('profile.edit')">
+//                     {{ __('Profile') }}
+//                 </x-responsive-nav-link> -->

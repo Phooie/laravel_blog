@@ -118,4 +118,11 @@ public function index()
 		// echo "Insert Success";
 		// echo "Update Success";
     }
+
+
+
+	public function sample()
+    {
+        return view('articles.sample');
+    }
 }

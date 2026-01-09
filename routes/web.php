@@ -35,6 +35,9 @@ Route::get('/food/booking', [ArticleController::class, 'booking']);//view static
 Route::get('/food', [ArticleController::class, 'index1']);
 Route::get('/food/detail/{id}', [ArticleController::class, 'detail']);
 Route::get('/food/test', [ArticleController::class, 'test']);
+Route::get('/sample', [ArticleController::class, 'sample']);
+
+
 Route::get('/test-relation', [UserController::class, 'index']);
 Route::get('/profile', [ProfileController::class, 'index']);
 Route::get('/post-list', [UserController::class, 'postList']);
