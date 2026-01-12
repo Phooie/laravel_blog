@@ -9,6 +9,8 @@ use App\Http\Controllers\Auth\PasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
 use App\Http\Controllers\Auth\RegisteredUserController;
 use App\Http\Controllers\Auth\VerifyEmailController;
+use App\Http\Controllers\ScoreController;
+
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('guest')->group(function () {
@@ -56,6 +58,10 @@ Route::middleware('auth')->group(function () {
 
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->name('logout');
+
+    Route::get('/scores/input', [ScoreController::class, 'input'])->middleware('check.student');
+    
+    Route::post('/scores/save', [ScoreController::class, 'save']);
 });
 
 Route::get('/guest', function () {
@@ -70,4 +76,6 @@ Route::get('/auth_user', function () {
 Route::get('/confidential', function () {
     return 'Welcome to Timed Page - Non-admin users can only access this page during working hours (8 AM to 5 PM)';
 })->middleware('check.time');//change timezone in config/app.php to check if it works
+
+
 

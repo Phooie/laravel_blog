@@ -5,6 +5,8 @@ use Illuminate\Support\Facades\Route;use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\LikeController;
+use App\Http\Controllers\ScoreController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,6 +30,14 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    Route::get('/articles/create', [ArticleController::class, 'create']);
+    Route::post('/articles/store', [ArticleController::class, 'store']);
+    Route::get('/articles/example', [ArticleController::class, 'article_ex']);
+
+    // Route::get('/scores/input', [ScoreController::class, 'input']);
+    // Route::post('/scores/save', [ScoreController::class, 'save']);
+    Route::get('/scores', [ScoreController::class, 'scores']);
+
 });
 
 Route::get('/food/index', [ArticleController::class, 'index']);//view dynamic blade

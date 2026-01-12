@@ -125,4 +125,34 @@ public function index()
     {
         return view('articles.sample');
     }
+
+	public function create()
+	{
+		return view('articles.create');
+
+	}
+
+	public function store(Request $request)
+	{
+			Article::create([
+				'title' => $request->title,
+				'body' => $request->body,
+				'category_id' => $request->category_id,
+			]);
+
+			return redirect('/articles/create');
+
+	}
+
+	public function article_ex()
+	{
+		$data = Article::all();
+		// $data=Menu::where('id', 10);
+		// $data->update(['name' => 'Chocolate Cake']);
+		// dd($data);
+        return view('articles.index', [
+            'articles' => $data
+        ]);
+
+	}
 }
