@@ -6,21 +6,25 @@
 </head>
 <body>
 	<x-app-layout>
-		<div class="w-4/6 m-auto mt-6 bg-white shadow-md rounded-lg p-6 space-y-2">
-			<h1 class="text-4xl font-bold text-center text-blue-500 mb-4">Performance Records</h1>
-			<ul class="list-disc list-inside">
-				<?php foreach($scores as $score): ?>
-				<li class="text-gray-800 font-medium hover:text-blue-500 transition-colors">
-                    <ul>Student Name:   <?php echo $score['student_name']; ?></ul>
-                    <ul>English Score:  <?php echo $score['eng']; ?></ul>
-                    <ul>Japanese Score: <?php echo $score['japanese']; ?></ul>
-                    <ul>Laravel Score:  <?php echo $score['laravel']; ?></ul>
-                    <ul>React Score:    <?php echo $score['react']; ?></ul>    
-                    
-				</li>
-				<?php endforeach ?>
-			</ul>
-		</div>
+
+        
+		<div class="w-4/6 m-auto mt-6 p-6 space-y-2">
+            <h1 class="text-4xl font-bold text-center text-blue-500 mb-4">Performance Records</h1>
+        </div>
+
+        
+            <?php foreach($scores as $score): ?>
+                <div class="w-4/6 m-auto mt-6 bg-white shadow-md rounded-lg p-6 space-y-2">
+                    <p class="text-xl text-cyan-300"><span class="font-bold text-cyan-400">Student Name:</span> <?php echo $score['student_name']; ?></p>
+                    <p class="text-xl text-sky-300"><span class="font-bold text-sky-400">English Score:</span> <?php echo $score['eng']; ?></p>
+                    <p class="text-xl text-blue-300"><span class="font-bold text-blue-400">Japanese Score:</span> <?php echo $score['japanese']; ?></p>
+                    <p class="text-xl text-indigo-300"><span class="font-bold text-indigo-400">Laravel Score:</span> <?php echo $score['laravel']; ?></p>
+                    <p class="text-xl text-violet-300"><span class="font-bold text-violet-400">React Score:</span> <?php echo $score['react']; ?></p>
+                </div>
+                
+            <?php endforeach ?>
+		
+        
 	</x-app-layout>
 </body>
 </html>
