@@ -7,20 +7,15 @@
                 Input Scores
             </h2>
 
-            <form action="/scores/save" method="POST" class="space-y-5">
+            <form action="/scores/update/{{ $scores-> id}}" method="POST" class="space-y-5">
                 @csrf
-
-                @if(session('success'))
-                    <div class="bg-green-50 border border-green-400 text-green-700 px-4 py-3 rounded mb-4">
-                        {{ session('success') }}
-                    </div>
-                @endif
+                @method('PUT')
 
                 <div>
                     <label class="block text-sm font-medium text-gray-700 mb-1">
                         Student Name
                     </label>
-                    <input type="text" name="student_name" value="{{ old('student_name') }}" class="w-full rounded-md border-gray-300 px-4 py-2
+                    <input type="text" name="student_name" value="{{$scores->student_name}}" class="w-full rounded-md border-gray-300 px-4 py-2
                                focus:border-blue-500 focus:ring-blue-500">
                     @error('student_name')
                         <p class="text-red-500 text-sm mt-1">{{ $message }}</p>
@@ -31,7 +26,7 @@
                     <label class="block text-sm font-medium text-gray-700 mb-1">
                         English Score
                     </label>
-                    <input type="number" name="eng" value="{{ old('eng') }}"
+                    <input type="number" name="eng" value="{{$scores->eng}}"
                         class="w-full rounded-md border-gray-300 px-4 py-2
                                focus:border-blue-500 focus:ring-blue-500">
                     @error('eng')
@@ -43,7 +38,7 @@
                     <label class="block text-sm font-medium text-gray-700 mb-1">
                         Japanese Score
                     </label>
-                    <input type="number" name="japanese" value="{{ old('japanese') }}"
+                    <input type="number" name="japanese" value="{{$scores->japanese}}"
                         class="w-full rounded-md border-gray-300 px-4 py-2
                                focus:border-blue-500 focus:ring-blue-500">
                     @error('japanese')
@@ -55,7 +50,7 @@
                     <label class="block text-sm font-medium text-gray-700 mb-1">
                         Laravel Score
                     </label>
-                    <input type="number" name="laravel" value="{{ old('laravel') }}"
+                    <input type="number" name="laravel" value="{{$scores->laravel}}"
                         class="w-full rounded-md border-gray-300 px-4 py-2
                                focus:border-blue-500 focus:ring-blue-500">
                         @error('laravel')
@@ -67,7 +62,7 @@
                     <label class="block text-sm font-medium text-gray-700 mb-1">
                         React Score
                     </label>
-                    <input type="number" name="react" value="{{ old('react') }}"
+                    <input type="number" name="react" value="{{$scores->react}}"
                         class="w-full rounded-md border-gray-300 px-4 py-2
                                focus:border-blue-500 focus:ring-blue-500">
                     @error('react')
@@ -79,7 +74,7 @@
                     <label class="block text-sm font-medium text-gray-700 mb-1">
                         Comment
                     </label>
-                    <textarea name="comment" rows="4" value="{{ old('comment') }}"
+                    <textarea name="comment" rows="4" value="{{$scores->comment}}"
                         class="w-full rounded-md border-gray-300 px-4 py-2
                                focus:border-blue-500 focus:ring-blue-500"></textarea>
                     @error('comment')
@@ -94,7 +89,7 @@
                                p-2.5 rounded-lg
                                hover:bg-blue-700
                                transition duration-200">
-                        Add Score
+                        Update Score
                     </button>
                 </div>
 

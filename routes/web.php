@@ -30,13 +30,17 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    Route::get('/articles/create', [ArticleController::class, 'create']);
+    Route::get('/articles/create', [ArticleController::class, 'create'])->name('articles.create');
     Route::post('/articles/store', [ArticleController::class, 'store']);
-    Route::get('/articles/example', [ArticleController::class, 'article_ex']);
+    Route::get('/articles/example', [ArticleController::class, 'article_ex'])->name('articles');
 
     // Route::get('/scores/input', [ScoreController::class, 'input']);
     // Route::post('/scores/save', [ScoreController::class, 'save']);
-    Route::get('/scores', [ScoreController::class, 'scores']);
+    Route::get('/scores', [ScoreController::class, 'scores'])->name('scores');
+
+    Route::get('/articles/edit/{id}', [ArticleController::class, 'edit']);
+    Route::put('/articles/update/{id}', [ArticleController::class, 'update']);//put method
+    Route::delete('/articles/{id}', [ArticleController::class, 'destroy']);
 
 });
 

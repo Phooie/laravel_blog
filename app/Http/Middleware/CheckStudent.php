@@ -24,7 +24,7 @@ class CheckStudent
 
         // Only allow admin email
         if ($user->email !== 'admin@example.com') {
-            abort(403, 'You do not have permission to input scores if you are not admin.');
+            abort(403, 'You do not have permission to modify or insert scores if you are not admin.');
         }
 
         return $next($request);

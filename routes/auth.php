@@ -59,9 +59,13 @@ Route::middleware('auth')->group(function () {
     Route::post('logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->name('logout');
 
-    Route::get('/scores/input', [ScoreController::class, 'input'])->middleware('check.student');
+    Route::get('/scores/input', [ScoreController::class, 'input'])->middleware('check.student')->name('scores.input');
     
     Route::post('/scores/save', [ScoreController::class, 'save']);
+
+    Route::get('/scores/edit/{id}', [ScoreController::class, 'edit'])->middleware('check.student');
+    Route::put('/scores/update/{id}', [ScoreController::class, 'update'])->middleware('check.student');
+    Route::delete('/scores/{id}', [ScoreController::class, 'destroy'])->middleware('check.student');
 });
 
 Route::get('/guest', function () {

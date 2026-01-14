@@ -134,25 +134,61 @@ public function index()
 
 	public function store(Request $request)
 	{
-			Article::create([
-				'title' => $request->title,
-				'body' => $request->body,
-				'category_id' => $request->category_id,
+			// Article::create([
+			// 	'title' => $request->title,
+			// 	'body' => $request->body,
+			// 	'category_id' => $request->category_id,
+			// ]);
+
+			$validated = $request->validate([
+				'title' => 'required|min:3|max:20',
+				'body'  => 'required|min:10',
+				'category_id' => 'required|integer',
 			]);
 
-			return redirect('/articles/create');
+			Article::create($validated);
+
+			return redirect('/articles/create')-> with('success','Article created successfully!');
 
 	}
 
 	public function article_ex()
 	{
-		$data = Article::all();
-		// $data=Menu::where('id', 10);
-		// $data->update(['name' => 'Chocolate Cake']);
-		// dd($data);
-        return view('articles.index', [
-            'articles' => $data
-        ]);
+		// $data = Article::all();
+		// // $data=Menu::where('id', 10);
+		// // $data->update(['name' => 'Chocolate Cake']);
+		// // dd($data);
+        // return view('articles.index', [
+        //     'articles' => $data
+        // ]);
+		$articles = Article::all();
+		return view('articles.index', compact('articles'));
+	}
 
+	public function edit($id)
+	{
+		$article = Article::findOrFail($id);
+		return view('articles.edit', compact('article'));
+	}
+
+	 public function update(Request $request, $id)
+	{
+		$article = Article::findOrFail($id);
+
+		$article->update([
+			'title' => $request->title,
+			'body' => $request->body,
+			'category_id' => $request->category_id,
+		]);
+
+		return redirect('/articles/example');
+	}
+
+	public function destroy($id)
+	{
+		$article = Article::findOrFail($id);
+		$article->delete();
+
+		return redirect('/articles/example');
 	}
 }
